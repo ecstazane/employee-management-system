@@ -1,21 +1,13 @@
 import jwt from 'jsonwebtoken';
 import User from '../models/User.js';
+import { sendError } from '../utils/response.js';
 
 export const protect = async (req, res, next) => {
-  let token;
-
-  if (
-    req.headers.authorization &&
-    req.headers.authorization.startsWith('Bearer')
-  ) {
-    token = req.headers.authorization.split(' ')[1];
-  }
+  const authHeader = req.headers.authorization;
+  const token = authHeader?.startsWith('Bearer ') ? authHeader.split(' ')[1] : null;
 
   if (!token) {
-    return res.status(401).json({
-      success: false,
-      message: 'Not authorized to access this route'
-    });
+    return sendError(res, 'Not authorized to access this route', 401);
   }
 
   try {
@@ -23,17 +15,11 @@ export const protect = async (req, res, next) => {
     req.user = await User.findById(decoded.id);
 
     if (!req.user) {
-      return res.status(401).json({
-        success: false,
-        message: 'User not found'
-      });
+      return sendError(res, 'User not found', 401);
     }
 
     next();
   } catch (error) {
-    return res.status(401).json({
-      success: false,
-      message: 'Not authorized to access this route'
-    });
+    return sendError(res, 'Not authorized to access this route', 401);
   }
 };

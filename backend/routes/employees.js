@@ -7,18 +7,19 @@ import {
   deleteEmployee
 } from '../controllers/employeeController.js';
 import { protect } from '../middleware/auth.js';
+import { asyncHandler } from '../utils/asyncHandler.js';
 
 const router = express.Router();
 
 router.use(protect);
 
 router.route('/')
-  .get(getEmployees)
-  .post(createEmployee);
+  .get(asyncHandler(getEmployees))
+  .post(asyncHandler(createEmployee));
 
 router.route('/:id')
-  .get(getEmployee)
-  .put(updateEmployee)
-  .delete(deleteEmployee);
+  .get(asyncHandler(getEmployee))
+  .put(asyncHandler(updateEmployee))
+  .delete(asyncHandler(deleteEmployee));
 
 export default router;
