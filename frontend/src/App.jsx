@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './AuthContext';
 import PrivateRoute from './PrivateRoute';
+import PublicRoute from './PublicRoute';
 import Login from './Login';
 import Register from './Register';
 import Employees from './Employees';
@@ -16,8 +17,8 @@ function App() {
         <div className="App">
           <Routes>
             <Route path="/" element={<Navigate to="/employees" />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
+            <Route path="/register" element={<PublicRoute><Register /></PublicRoute>} />
             <Route path="/employees" element={<PrivateRoute><Employees /></PrivateRoute>} />
             <Route path="/employees/add" element={<PrivateRoute><EmployeeForm /></PrivateRoute>} />
             <Route path="/employees/edit/:id" element={<PrivateRoute><EmployeeForm /></PrivateRoute>} />
