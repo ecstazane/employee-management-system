@@ -1,5 +1,5 @@
 {
-  "name": "employee-management-backend",
+  "name": "ems-backend",
   "version": "1.0.0",
   "description": "Employee Management System Backend",
   "main": "server.js",
