@@ -24,7 +24,6 @@ const Layout = ({ children }) => {
             className={`nav-item ${location.pathname === '/employees' ? 'active' : ''}`}
             onClick={() => navigate('/employees')}
           >
-            <span className="nav-icon">👥</span>
             <span>Employees</span>
           </button>
         </nav>
