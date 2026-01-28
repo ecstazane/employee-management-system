@@ -39,7 +39,7 @@ export const updateEmployee = async (req, res) => {
 
 export const deleteEmployee = async (req, res) => {
   const employee = await Employee.findByIdAndDelete(req.params.id);
-  
+
   if (!employee) {
     return sendError(res, 'Employee not found', 404);
   }

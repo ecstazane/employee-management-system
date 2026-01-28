@@ -20,16 +20,44 @@ const Layout = ({ children }) => {
           <h2 className="logo">EMS</h2>
         </div>
         <nav className="sidebar-nav">
-          <button
-            className={`nav-item ${location.pathname === '/employees' ? 'active' : ''}`}
-            onClick={() => navigate('/employees')}
-          >
-            <span>Employees</span>
-          </button>
+          <div className="nav-section">
+            <span className="nav-section-label">Main</span>
+            <button
+              className={`nav-item ${location.pathname === '/employees' ? 'active' : ''}`}
+              onClick={() => navigate('/employees')}
+            >
+              <span className="nav-icon">👥</span>
+              <span>Employees</span>
+            </button>
+            <button
+              className={`nav-item ${location.pathname === '/data-manager' ? 'active' : ''}`}
+              onClick={() => navigate('/data-manager')}
+            >
+              <span className="nav-icon">📊</span>
+              <span>Data Manager</span>
+            </button>
+          </div>
+          <div className="nav-section">
+            <span className="nav-section-label">System</span>
+            <button
+              className={`nav-item ${location.pathname === '/audit-trails' ? 'active' : ''}`}
+              onClick={() => navigate('/audit-trails')}
+            >
+              <span className="nav-icon">📋</span>
+              <span>Audit Trails</span>
+            </button>
+            <button
+              className={`nav-item ${location.pathname === '/settings' ? 'active' : ''}`}
+              onClick={() => navigate('/settings')}
+            >
+              <span className="nav-icon">⚙️</span>
+              <span>Settings</span>
+            </button>
+          </div>
         </nav>
         <div className="sidebar-footer">
-          <button className="nav-item" onClick={handleLogout}>
-            <span className="nav-icon">⚙️</span>
+          <button className="nav-item logout-btn" onClick={handleLogout}>
+            <span className="nav-icon">🚪</span>
             <span>Logout</span>
           </button>
         </div>
